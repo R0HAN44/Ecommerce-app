@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
 import { selectItems, selectTotal } from "./slices/basketSlice";
 import CheckoutProduct from "./components/CheckoutProduct";
 import Currency from "react-currency-formatter";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
+
+  const navigateTo = useNavigate();
 
   return (
     <div className="bg-gray-100 ">
@@ -49,10 +52,18 @@ function Checkout() {
               <h2 className="whitespace-nowrap">
                 Subtotal ({items.length} items):{" "}
                 <span className="font-bold">
-                  <Currency quantity={total * 80} currency="INR" />
+                  <Currency quantity={Math.floor(total * 80)} currency="INR" />
                 </span>
               </h2>
-              <button className={`button mt-2`}>Proceed to checkout</button>
+              <button
+                role="link"
+                onClick={() => {
+                  navigateTo("/success");
+                }}
+                className={`button mt-2`}
+              >
+                Proceed to checkout
+              </button>
             </>
           )}
         </div>

@@ -26,7 +26,7 @@ function CheckoutProduct({
       image,
       hasPrime,
     };
-    dispatch(addItemToBasket(product));
+    dispatch(addToBasket(product));
   };
 
   const reemoveItemFromBasket = () => {
@@ -46,7 +46,7 @@ function CheckoutProduct({
             ))}
         </div>
         <p className="text-xs my-2 line-clamp-3"> {description}</p>
-        <Currency quantity={price * 80} currency="INR" />
+        <Currency quantity={Math.floor(price * 80)} currency="INR" />
 
         {hasPrime && (
           <div className="flex items-center space-x-2">
