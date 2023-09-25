@@ -5,7 +5,7 @@ import "./styles/index.css";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Checkout from "./checkout.jsx";
+import Checkout from "./Checkout.jsx";
 import Success from "./components/Success.jsx";
 import Orders from "./components/Orders.jsx";
 
