@@ -1,23 +1,13 @@
-# Ecommerce App - (Amazon Clone)
+# Ecommerce App - (Amazon Clone) [Click Here](https://ecommerce-mxh5wg2i9-rohanj0306-gmailcom.vercel.app/)
 
 An ecommerce application allows users to shop online, browse product catalogs, add items to a cart, and Sign in. It also provides cart details and order status.
 
 ## Technologies Used
 
-### Html, Css, JavaScript, Reactjs, Redux, Redux Toolkit, Firebase Authentication, Vite, Vercel
-This Application was built using the technologies mentioned above. Reactjs was used to build the UI and also used Redux ToolKit for state management. The Authentication was implemented using google's firebase auth. This app was deployed on vercel.
-
-## Project Screen Shot(s)
-
-#### Example:   
-
-[ PRETEND SCREEN SHOT IS HERE ]
-
-[ PRETEND OTHER SCREEN SHOT IS HERE ]
+### Html, Css, JavaScript, TailwindCss, Reactjs, Redux, Redux Toolkit, Firebase Authentication, Vite, Vercel
+This Application was built using the technologies mentioned above. TailwindCss and Reactjs was used to build the UI and also used Redux ToolKit for state management. The Authentication was implemented using google's firebase auth. This app was deployed on vercel.
 
 ## Installation and Setup Instructions
-
-#### Example:  
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
 
@@ -31,27 +21,40 @@ To Run Test Suite:
 
 To Start Server:
 
-`npm start`  
+`npm run dev`  
 
 To Visit App:
 
-`localhost:3000/ideas`  
+`localhost:3000`  
 
-## Reflection
+To install TailWindCss
 
-  - What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
-  - What did you set out to build?
-  - Why was this project challenging and therefore a really good learning experience?
-  - What were some unexpected obstacles?
-  - What tools did you use to implement this project?
-      - This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.  
+`npm install -D tailwindcss`
 
-#### Example:  
+`npx tailwindcss init`
 
-This was a 3 week long project built during my third module at Turing School of Software and Design. Project goals included using technologies learned up until this point and familiarizing myself with documentation for new features.  
+To install redux and redux ToolKit
 
-Originally I wanted to build an application that allowed users to pull data from the Twitter API based on what they were interested in, such as 'most tagged users'. I started this process by using the `create-react-app` boilerplate, then adding `react-router-4.0` and `redux`.  
+`npm install redux`
 
-One of the main challenges I ran into was Authentication. This lead me to spend a few days on a research spike into OAuth, Auth0, and two-factor authentication using Firebase or other third parties. Due to project time constraints, I had to table authentication and focus more on data visualization from parts of the API that weren't restricted to authenticated users.
+`npm install @reduxjs/toolkit`
 
-At the end of the day, the technologies implemented in this project are React, React-Router 4.0, Redux, LoDash, D3, and a significant amount of VanillaJS, JSX, and CSS. I chose to use the `create-react-app` boilerplate to minimize initial setup and invest more time in diving into weird technological rabbit holes. In the next iteration I plan on handrolling a `webpack.config.js` file to more fully understand the build process.
+
+
+
+## Project Screen Shot(s)
+
+### Home Page
+![alt text](https://github.com/R0HAN44/Ecommerce-app/blob/main/Amazon-Clone.png)
+
+<hr>
+
+### Cart 
+![alt text](https://github.com/R0HAN44/Ecommerce-app/blob/main/Amazon-Clone2.png)
+
+<hr>
+
+### Orders 
+![alt text](https://github.com/R0HAN44/Ecommerce-app/blob/main/Amazon-Clone3.png)
+
+
