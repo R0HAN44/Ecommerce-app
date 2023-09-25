@@ -1,6 +1,5 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 import React from "react";
-import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket, removeFromBasket } from "../slices/basketSlice";
 function CheckoutProduct({
@@ -29,7 +28,7 @@ function CheckoutProduct({
     dispatch(addToBasket(product));
   };
 
-  const reemoveItemFromBasket = () => {
+  const removeItemFromBasket = () => {
     dispatch(removeFromBasket({ id }));
   };
 
@@ -46,7 +45,8 @@ function CheckoutProduct({
             ))}
         </div>
         <p className="text-xs my-2 line-clamp-3"> {description}</p>
-        <Currency quantity={Math.floor(price * 80)} currency="INR" />
+        {"₹"}
+        {Math.floor(price * 80)}
 
         {hasPrime && (
           <div className="flex items-center space-x-2">
@@ -63,7 +63,7 @@ function CheckoutProduct({
         <button onClick={addItemToBasket} className="button">
           Add to Basket
         </button>
-        <button className="button" onClick={reemoveItemFromBasket}>
+        <button className="button" onClick={removeItemFromBasket}>
           Remove from Basket
         </button>
       </div>

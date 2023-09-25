@@ -3,7 +3,6 @@ import Header from "./Header";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 import Order from "./Order";
-import Currency from "react-currency-formatter";
 
 function Orders() {
   const items = useSelector(selectItems);
@@ -45,11 +44,8 @@ function Orders() {
           {items.length > 0 && (
             <div className="border rounded-md flex items-center space-x-10 p-5 bg-gray-100  text-gray-600 font-bold text-2xl justify-between">
               <div>
-                Grand total ={" "}
-                <Currency
-                  quantity={Math.floor(grandTotal * 80)}
-                  currency="INR"
-                />
+                Grand total ={"₹"}
+                {Math.floor(grandTotal * 80)}
               </div>
               <div>{items.length} Items</div>
             </div>

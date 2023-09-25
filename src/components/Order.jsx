@@ -1,5 +1,4 @@
 import React from "react";
-import Currency from "react-currency-formatter";
 
 function Order({
   key,
@@ -42,10 +41,8 @@ function Order({
         <div>
           <p className="text-xs font-bold">TOTAL</p>
           <p>
-            <Currency
-              quantity={Math.floor(price * quantity * 80)}
-              currency="INR"
-            />
+            {"₹"}
+            {Math.floor(price * quantity * 80)}
           </p>
         </div>
         <p className="text-sm whitespace-nowrap sm:text-xl self-end flex-1 text-right text-blue-500">
