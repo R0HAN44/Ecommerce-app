@@ -1,17 +1,11 @@
-## Project Name & Pitch
+# Ecommerce App - (Amazon Clone)
 
-#### Example:
+An ecommerce application allows users to shop online, browse product catalogs, add items to a cart, and Sign in. It also provides cart details and order status.
 
-TweetWorld 
+## Technologies Used
 
-An application used to filter data form Twitter based on user preference, built with React, Redux, JavaScript, and CSS.
-
-## Project Status
-(only necessary if incomplete)
-
-#### Example:
-
-This project is currently in development. Users can filter tweets by username and keyword and see visual data representation. Functionality to sort by additional parameters is in progress.
+### Html, Css, JavaScript, Reactjs, Redux, Redux Toolkit, Firebase Authentication, Vite, Vercel
+This Application was built using the technologies mentioned above. Reactjs was used to build the UI and also used Redux ToolKit for state management. The Authentication was implemented using google's firebase auth. This app was deployed on vercel.
 
 ## Project Screen Shot(s)
 
