@@ -1,6 +1,6 @@
 # Ecommerce App - (Amazon Clone) [Click Here](https://ecommerce-mxh5wg2i9-rohanj0306-gmailcom.vercel.app/)
 
-An ecommerce application allows users to shop online, browse product catalogs, add items to a cart, and Sign in. It also provides cart details and order status.
+An ecommerce application allows users to shop online, browse product catalogs, add items to a cart, and Checkout functionality. It also provides cart details and order status.
 
 ## Technologies Used
 
