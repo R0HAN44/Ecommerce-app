@@ -1,15 +1,54 @@
 import React from "react";
 import Header from "./components/Header";
-import { useSelector } from "react-redux";
-import { selectItems, selectTotal } from "./slices/basketSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToOrder, selectItems, selectTotal } from "./slices/basketSlice";
 import CheckoutProduct from "./components/CheckoutProduct";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc, doc, getDocs, setDoc } from "firebase/firestore";
+import { db } from "./firebase";
+import { selectUser } from "./slices/userSlice";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 function Checkout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
-
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const navigateTo = useNavigate();
+  const handleCheckout = () => {
+    if (!user.email) {
+      alert("Please Sign in to checkout");
+      return;
+    }
+    navigateTo("/success");
+    var options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    var today = new Date();
+    addDoc(collection(db, "users", user.email, "orders"), {
+      date: today.toLocaleDateString("en-US", options),
+      it: items,
+    })
+      .then(() => {
+        // console.log("added items to db", user.name);
+      })
+      .catch((error) => {
+        console.log("coudnt had items to db");
+      });
+
+    const colRef = collection(db, "users", user.email, "orders");
+    getDocs(colRef).then((snapshot) => {
+      let orders = [];
+      snapshot.docs.forEach((doc) => {
+        orders.push({ ...doc.data(), id: doc.id });
+      });
+      dispatch(addToOrder(orders[0]));
+    });
+  };
 
   return (
     <div className="bg-gray-100 ">
@@ -57,9 +96,7 @@ function Checkout() {
               </h2>
               <button
                 role="link"
-                onClick={() => {
-                  navigateTo("/success");
-                }}
+                onClick={handleCheckout}
                 className={`button mt-2`}
               >
                 Proceed to checkout

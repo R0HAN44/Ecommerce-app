@@ -2,8 +2,18 @@ import React from "react";
 import Header from "./Header";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToOrder } from "../slices/basketSlice";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { selectUser } from "../slices/userSlice";
 function Success() {
   const navigateTo = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const handleButton = () => {
+    navigateTo("/orders");
+  };
   return (
     <div className="bg-gray-100 h-screen">
       <Header />
@@ -19,12 +29,7 @@ function Success() {
             Thank you for shopping with us. If you would like to check the
             status of order(s) please click the link below.
           </p>
-          <button
-            onClick={() => {
-              navigateTo("/orders");
-            }}
-            className="button mt-8"
-          >
+          <button onClick={handleButton} className="button mt-8">
             Go to my orders
           </button>
         </div>

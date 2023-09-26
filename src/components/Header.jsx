@@ -4,17 +4,24 @@ import {
   MagnifyingGlassIcon,
   Bars3Icon,
 } from "@heroicons/react/24/outline";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
-// import {login, logout, selectUser } from "../slices/userSlice";
-import { auth, provider } from "../firebase";
+import { login, logout, selectUser } from "../slices/userSlice";
+import { auth, provider, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectItems } from "../slices/basketSlice";
+import { addToOrder, selectItems } from "../slices/basketSlice";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 
 function Header() {
-  // const user = useSelector(selectUser)
-  // const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const [username, setusername] = useState("");
   const [value, setValue] = useState("");
@@ -25,14 +32,25 @@ function Header() {
       signInWithPopup(auth, provider).then((data) => {
         setValue(data.user.email);
         setusername(data.user.displayName);
+        dispatch(
+          login({ email: data.user.email, name: data.user.displayName })
+        );
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("username", data.user.displayName);
+        let col = collection(db, "users");
+        setDoc(doc(col, data.user.email), {
+          name: data.user.displayName,
+          email: data.user.email,
+        })
+          .then((docRef) => {
+            // console.log("logged in db with id: ", data.user.email);
+          })
+          .catch((e) => {
+            console.log("eror logging in db");
+          });
       });
-      //   dispatch(login({
-      //   email:localStorage.getItem('email')
-      // }))
     } else {
-      // dispatch(logout())
+      dispatch(logout());
       signOut(getAuth());
       localStorage.clear();
       setValue("");
@@ -41,8 +59,24 @@ function Header() {
   };
 
   useEffect(() => {
+    dispatch(
+      login({
+        email: localStorage.getItem("email"),
+        name: localStorage.getItem("username"),
+      })
+    );
     setusername(localStorage.getItem("username"));
     setValue(localStorage.getItem("email"));
+    // if (localStorage.getItem("email")) {
+    //   const colRef = collection(db, "users", user.email, "orders");
+    //   let books = [];
+    //   getDocs(colRef).then((snapshot) => {
+    //     snapshot.docs.forEach((doc) => {
+    //       books.push({ ...doc.data(), id: doc.id });
+    //     });
+    //   });
+    //   dispatch(addToOrder(books));
+    // }
   }, []);
 
   return (
@@ -76,7 +110,12 @@ function Header() {
             </p>
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
-          <div className="link">
+          <div
+            className="link"
+            onClick={() => {
+              navigateTo("/orders");
+            }}
+          >
             <p>Return</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
